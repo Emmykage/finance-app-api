@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :portfolios
-  resources :assets
+  
   namespace :api do
     namespace :v1 do
       resources :users
+      resources :assets
+      resources :portfolios
+  
       post "/login", to: "users#login"
     end 
   end
