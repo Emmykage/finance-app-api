@@ -1,4 +1,6 @@
-class AssetsController < ApplicationController
+class Api::V1::AssetsController < ApplicationController
+  before_action :authorize
+
   before_action :set_asset, only: %i[ show update destroy ]
 
   # GET /assets
