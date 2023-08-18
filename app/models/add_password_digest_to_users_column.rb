@@ -1,0 +1,2 @@
+class AddPasswordDigestToUsersColumn < ApplicationRecord
+end
