@@ -20,7 +20,12 @@ class ApplicationController < ActionController::API
 
         if decode_token
             user_id = decode_token[0]['user_id']
+
+            
+            # binding.b
             @user = User.find_by(id: user_id)
+          
+
         end
 
         

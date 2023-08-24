@@ -10,30 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_18_152317) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_23_192547) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "add_password_digest_to_users_columns", force: :cascade do |t|
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "assets", force: :cascade do |t|
     t.string "asset_name"
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["users_id"], name: "index_assets_on_users_id"
+    t.integer "minimun_investment"
+    t.string "term"
+    t.integer "payment_schedule", default: 0
+    t.index ["user_id"], name: "index_assets_on_user_id"
   end
 
   create_table "portfolios", force: :cascade do |t|
     t.string "portfolio_name"
-    t.bigint "assets_id", null: false
+    t.bigint "asset_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["assets_id"], name: "index_portfolios_on_assets_id"
+    t.float "amount"
+    t.index ["asset_id"], name: "index_portfolios_on_asset_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,6 +43,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_152317) do
     t.string "password_digest"
   end
 
-  add_foreign_key "assets", "users", column: "users_id"
-  add_foreign_key "portfolios", "assets", column: "assets_id"
+  add_foreign_key "assets", "users"
+  add_foreign_key "portfolios", "assets"
 end

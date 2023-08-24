@@ -17,10 +17,15 @@ class Api::V1::AssetsController < ApplicationController
 
   # POST /assets
   def create
-    @asset = Asset.new(asset_params)
+    @asset = @user.assets.new(asset_params)
+    # @asset = Asset.new(asset_params)
+
+    # binding.b
 
     if @asset.save
-      render json: @asset, status: :created, location: @asset
+          # binding.b
+
+      render json: @asset, status: :created
     else
       render json: @asset.errors, status: :unprocessable_entity
     end
@@ -48,6 +53,6 @@ class Api::V1::AssetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def asset_params
-      params.require(:asset).permit(:asset_name, :User_id)
+      params.require(:asset).permit(:asset_name, :minimun_investment, :term, :payment_schedule)
     end
 end
