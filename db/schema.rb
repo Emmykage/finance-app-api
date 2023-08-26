@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_23_192547) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_24_165019) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_23_192547) do
     t.integer "minimun_investment"
     t.string "term"
     t.integer "payment_schedule", default: 0
+    t.string "asset_type", default: "0"
+    t.string "title"
+    t.text "description"
     t.index ["user_id"], name: "index_assets_on_user_id"
   end
 
