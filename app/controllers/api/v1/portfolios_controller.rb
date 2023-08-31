@@ -16,7 +16,7 @@ class Api::V1::PortfoliosController < ApplicationController
 
   # POST /portfolios
   def create
-    @portfolio = Portfolio.new(portfolio_params)
+    @portfolio = @user.portfolios.new(portfolio_params)
 
     if @portfolio.save
       render json: @portfolio, status: :created, location: @portfolio
@@ -47,6 +47,6 @@ class Api::V1::PortfoliosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def portfolio_params
-      params.require(:portfolio).permit(:portfolio_name, :Asset_id)
+      params.require(:portfolio).permit(:portfolio_name, :asset_id, :amount)
     end
 end

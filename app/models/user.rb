@@ -1,7 +1,8 @@
 class User < ApplicationRecord
     has_secure_password
     has_many :assets
-    has_many :portfolios, through: :assets
+    has_many :portfolios
+    # has_many :portfolios, through: :assets
 
     validates :email, :first_name, :last_name, presence: true
     validates :email, uniqueness: { case_sensitive: false }
