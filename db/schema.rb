@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_132554) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "minimun_investment"
+    t.float "minimum_investment"
     t.string "term"
     t.integer "payment_schedule", default: 0
     t.integer "asset_type", default: 0

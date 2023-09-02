@@ -1,5 +1,5 @@
 class Api::V1::AssetsController < ApplicationController
-  before_action :authorize
+  before_action :authorize, except: [:index]
 
   before_action :set_asset, only: %i[ show update destroy ]
 
