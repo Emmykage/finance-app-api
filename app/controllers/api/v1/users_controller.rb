@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
   def index
     @users = User.all
 
-    render json: @users
+    render json: {users: @users}
   end
 
   # GET /users/1
@@ -13,7 +13,7 @@ class Api::V1::UsersController < ApplicationController
   #   render json: @user
   # end
   def account
-    render json: @user
+    render json: {user: @user}
   end
   # POST /users
   def create
