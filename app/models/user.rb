@@ -8,4 +8,8 @@ class User < ApplicationRecord
     validates :email, uniqueness: { case_sensitive: false }
     validates :password, length: { in: 6..20 }
 
+    def total_asset
+        
+        portfolios.collect{|portfolio| portfolio.valid? ? portfolio.amount : 0}.sum
+    end
 end
