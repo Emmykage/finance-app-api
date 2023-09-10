@@ -29,7 +29,7 @@ assets = Asset.create([{
     asset_type: "Art",
     title: "Consumer Health & Wellness Financing I",
     description: "Invest in a financincing facility expected to consist of 4,500+ consumer loans",
-    minimum_investment: 10,
+    minimum_investment: 8000,
     term: "36",
     payment_schedule: "yearly",
     overview_description: "Park45 is a class: A multi-family complex located north of huston. the Sponsor is making minor upgrades to drive an expected 28% per-unit increase from the purchase price at time of sale in the second half of 2025.",
@@ -85,7 +85,7 @@ assets = Asset.create([{
 {
 
     user_id: 1,
-    annual_mangt_fee: 3000,
+    annual_mangt_fee: 3,
     asset_type: "Art",
     title: "Portland Multi-Family Financing",
     description: "A loan backed by an under construction multi-family property.",
@@ -115,7 +115,7 @@ assets = Asset.create([{
 {
 
     user_id: 1,
-    annual_mangt_fee: 3000,
+    annual_mangt_fee: 3,
     asset_type: "Crypto",
     title: "Yieldstreet Prism Fund",
     description: "Enhance the income of your portfolio with a diversified private markets fund. & Income REIT",
