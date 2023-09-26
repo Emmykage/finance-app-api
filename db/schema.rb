@@ -71,7 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_122842) do
   end
 
   create_table "wallets", force: :cascade do |t|
-    t.decimal "balance"
+    t.decimal "balance", default: "0.0"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
