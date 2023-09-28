@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       resources :users
       resources :assets
       resources :portfolios
+      resources :wallets
+      resources :transactions
       get "/account", to: "users#account"
       post "/login", to: "users#login"
     end 

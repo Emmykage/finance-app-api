@@ -1,9 +1,11 @@
-class TransactionsController < ApplicationController
+class Api::V1::TransactionsController < ApplicationController
+  before_action :authorize
+  before_action :initialize_wallet
   before_action :set_transaction, only: %i[ show update destroy ]
 
   # GET /transactions
   def index
-    @transactions = Transaction.all
+    @transactions = @wallet.transactions.all
 
     render json: @transactions
   end
@@ -18,7 +20,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
 
     if @transaction.save
-      render json: @transaction, status: :created, location: @transaction
+      render json: @transaction, status: :created
     else
       render json: @transaction.errors, status: :unprocessable_entity
     end
