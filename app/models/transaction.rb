@@ -1,6 +1,6 @@
 class Transaction < ApplicationRecord
   belongs_to :wallet
-  enum :type, {BTC: 0, ETH: 1}
+  enum :coin_type, {BITCOIN: 0, ETHERUM: 1, "USD THETHER" => 2}
   enum :status, {pending: 0, completed: 1}
   
 

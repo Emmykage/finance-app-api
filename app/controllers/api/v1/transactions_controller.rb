@@ -17,7 +17,7 @@ class Api::V1::TransactionsController < ApplicationController
 
   # POST /transactions
   def create
-    @transaction = Transaction.new(transaction_params)
+    @transaction = @wallet.transactions.new(transaction_params)
 
     if @transaction.save
       render json: @transaction, status: :created
@@ -48,6 +48,6 @@ class Api::V1::TransactionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def transaction_params
-      params.require(:transaction).permit(:amount, :type, :status, :wallet_id)
+      params.require(:transaction).permit(:amount, :coin_type, :status, :transaction_type, :wallet_address)
     end
 end

@@ -21,8 +21,6 @@ class ApplicationController < ActionController::API
         if decode_token
             user_id = decode_token[0]['user_id']
 
-            
-            # binding.b
             @user = User.find_by(id: user_id)
           
 
@@ -42,6 +40,6 @@ class ApplicationController < ActionController::API
         @wallet ||= Wallet.find_by(user_id: @user.id)
         return unless @wallet.nil?
         
-        @wallet = @user.wallets.create
+        @wallet = @user.create_wallet
        end
 end
