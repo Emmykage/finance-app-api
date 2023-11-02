@@ -1,15 +1,11 @@
 class Wallet < ApplicationRecord
   belongs_to :user
   has_many :transactions
-  # before_save :get_balance
-
-
-  # deposit
-  
+ 
 
   def deposit
     if transactions.where(transaction_type: "deposit").any?
-      transactions.where(transaction_type: "deposit").collect{|transaction| transaction.amount }.sum
+      transactions.where(status: "completed").collect{|transaction| transaction.amount }.sum
     else
       0.0
     end
@@ -23,7 +19,7 @@ class Wallet < ApplicationRecord
    end
 
   def wallet_balance 
-    self[:balance] = deposit - withdrawal
+    deposit - withdrawal
 
   end  
   def total
