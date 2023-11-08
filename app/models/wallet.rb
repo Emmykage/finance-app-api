@@ -14,7 +14,7 @@ class Wallet < ApplicationRecord
     if transactions.where(transaction_type: "withdraw").any?
       transactions.where(transaction_type: "withdraw").collect{|transaction| transaction.amount }.sum
     else
-      "0.0"
+      0.0
     end 
    end
 
@@ -26,9 +26,5 @@ class Wallet < ApplicationRecord
     transactions.collect {|t| t.amount}.sum   
     # 344
   end
-
-  
-  # binding.b
-  # tester
 
 end
