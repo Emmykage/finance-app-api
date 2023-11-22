@@ -3,6 +3,7 @@ class User < ApplicationRecord
     has_many :assets
     has_many :portfolios
     has_one :wallet
+    
     # has_many :portfolios, through: :assets
 
     enum :role, {client: 0, admin: 1}
