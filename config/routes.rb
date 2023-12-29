@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :portfolio_interests
+  resources :earning_transactions
+  resources :earnings
   resources :transactions
   resources :wallets
   

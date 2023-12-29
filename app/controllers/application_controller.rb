@@ -21,7 +21,7 @@ class ApplicationController < ActionController::API
         if decode_token
             user_id = decode_token[0]['user_id']
 
-            @user = User.find_by(id: user_id)
+            @current_user = User.find_by(id: user_id)
           
 
         end
@@ -37,9 +37,17 @@ class ApplicationController < ActionController::API
 
     def initialize_wallet
         
-        @wallet ||= Wallet.find_by(user_id: @user.id)
+        @wallet ||= Wallet.find_by(user_id: @current_user.id)
         return unless @wallet.nil?
         
-        @wallet = @user.create_wallet
+        @wallet = @current_user.create_wallet
        end
+
+    def initialize_earning 
+        @earning ||= Earning.find(wallet_id: @wallet.id)
+
+        return unless @earning.nil? 
+        @earning = @wallet.create_earning
+      
+    end
 end
