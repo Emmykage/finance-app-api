@@ -41,13 +41,11 @@ class ApplicationController < ActionController::API
         return unless @wallet.nil?
         
         @wallet = @current_user.create_wallet
-       end
+    end
 
     def initialize_earning 
-        @earning ||= Earning.find(wallet_id: @wallet.id)
-
+        @earning ||= Earning.find_by(wallet_id: @wallet.id)
         return unless @earning.nil? 
         @earning = @wallet.create_earning
-      
     end
 end

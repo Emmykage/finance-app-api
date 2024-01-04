@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_22_072533) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_23_073552) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,30 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_22_072533) do
     t.text "overview_description"
     t.text "overview_note"
     t.index ["user_id"], name: "index_assets_on_user_id"
+  end
+
+  create_table "earning_transactions", force: :cascade do |t|
+    t.decimal "amount"
+    t.bigint "earning_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["earning_id"], name: "index_earning_transactions_on_earning_id"
+  end
+
+  create_table "earnings", force: :cascade do |t|
+    t.bigint "wallet_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wallet_id"], name: "index_earnings_on_wallet_id"
+  end
+
+  create_table "portfolio_interests", force: :cascade do |t|
+    t.decimal "interest"
+    t.boolean "withdrawn"
+    t.bigint "portfolio_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["portfolio_id"], name: "index_portfolio_interests_on_portfolio_id"
   end
 
   create_table "portfolios", force: :cascade do |t|
@@ -111,6 +135,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_22_072533) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "assets", "users"
+  add_foreign_key "earning_transactions", "earnings"
+  add_foreign_key "earnings", "wallets"
+  add_foreign_key "portfolio_interests", "portfolios"
   add_foreign_key "portfolios", "assets"
   add_foreign_key "portfolios", "users"
   add_foreign_key "transactions", "wallets"

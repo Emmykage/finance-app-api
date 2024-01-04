@@ -1,17 +1,19 @@
 Rails.application.routes.draw do
-  resources :portfolio_interests
-  resources :earning_transactions
-  resources :earnings
-  resources :transactions
-  resources :wallets
+
+  # resources :transactions
+  # resources :wallets
   
   namespace :api do
     namespace :v1 do
       resources :users
       resources :assets
-      resources :portfolios
+      resources :portfolios do
+        resources :portfolio_interests
+      end
       resources :wallets
       resources :transactions
+      resources :earning_transactions
+      resources :earnings
       get "/account", to: "users#account"
       post "/login", to: "users#login"
     end 

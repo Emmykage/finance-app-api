@@ -9,4 +9,13 @@ class Portfolio < ApplicationRecord
     true
     
   end
+
+  def investment_interest 
+    if portfolio_interests.any?
+      portfolio_interests.collect{|profit| profit.interest }.sum
+    else
+      0.0
+    end
+    
+  end
 end
