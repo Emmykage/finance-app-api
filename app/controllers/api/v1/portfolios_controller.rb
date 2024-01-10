@@ -9,6 +9,13 @@ class Api::V1::PortfoliosController < ApplicationController
     render json: @portfolios
   end
 
+  def all_portfolios
+    
+     @portfolios = Portfolio.all
+     render json: @portfolios
+
+  end
+
   # GET /portfolios/1
   def show
     render json: @portfolio

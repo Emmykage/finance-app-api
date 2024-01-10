@@ -8,10 +8,17 @@ Rails.application.routes.draw do
       resources :users
       resources :assets
       resources :portfolios do
+        collection do 
+          get :all_portfolios 
+        end
         resources :portfolio_interests
       end
       resources :wallets
-      resources :transactions
+      resources :transactions do 
+        collection do
+          get :all_transaction
+        end
+      end
       resources :earning_transactions
       resources :earnings
       get "/account", to: "users#account"

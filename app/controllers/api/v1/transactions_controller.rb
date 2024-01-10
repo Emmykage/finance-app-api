@@ -10,6 +10,10 @@ class Api::V1::TransactionsController < ApplicationController
     render json: @transactions
   end
 
+  def all_transaction
+    @transactions = Transaction.all
+  end
+
   # GET /transactions/1
   def show
     render json: @transaction
