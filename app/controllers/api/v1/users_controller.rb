@@ -13,6 +13,7 @@ class Api::V1::UsersController < ApplicationController
     render json: @user
   end
   def account
+    
     render json: @current_user
   end
   # POST /users

@@ -23,10 +23,10 @@ class User < ApplicationRecord
     end
 
 
-    def total_earnings 
+    def total_earnings
         if portfolios.any? 
-            portfolios.collect{|portfolio| portfolio.valid? ? portfolio.portfolio_interests : 0}.sum
-        else 
+            portfolios.collect{|portfolio| portfolio.valid? ? portfolio.investment_interest : 0}.sum
+        else
             0.0
         end
       

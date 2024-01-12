@@ -21,7 +21,7 @@ class Api::V1::AssetsController < ApplicationController
     if @asset.save
       render json: @asset, status: :created
     else
-      render json: @asset.errors, status: :unprocessable_entity
+      render json: {message: "Asset title, description and notes can not be blank"}, status: :unprocessable_entity
     end
   end
 
