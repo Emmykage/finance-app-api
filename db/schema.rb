@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_06_124948) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_16_033213) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,9 +77,20 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_06_124948) do
     t.index ["wallet_id"], name: "index_earnings_on_wallet_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.bigint "sender_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "recipient_id", null: false
+    t.index ["recipient_id"], name: "index_messages_on_recipient_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
+  end
+
   create_table "portfolio_interests", force: :cascade do |t|
     t.decimal "interest"
-    t.boolean "withdrawn"
+    t.boolean "withdrawn", default: false
     t.bigint "portfolio_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -107,7 +118,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_06_124948) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "wallet_address"
-    t.string "transaction_type"
+    t.integer "transaction_type"
     t.index ["wallet_id"], name: "index_transactions_on_wallet_id"
   end
 
@@ -138,6 +149,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_06_124948) do
   add_foreign_key "assets", "users"
   add_foreign_key "earning_transactions", "earnings"
   add_foreign_key "earnings", "wallets"
+  add_foreign_key "messages", "users", column: "recipient_id"
+  add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "portfolio_interests", "portfolios"
   add_foreign_key "portfolios", "assets"
   add_foreign_key "portfolios", "users"

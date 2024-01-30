@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :messages
 
   # resources :transactions
   # resources :wallets
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users
       resources :assets
+      resources :messages
       resources :portfolios do
         collection do 
           get :all_portfolios 
