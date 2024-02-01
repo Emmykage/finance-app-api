@@ -5,10 +5,16 @@ class Api::V1::MessagesController < ApplicationController
 
   # GET /messages
   def index
-    @messages = Message.all
-    
-    # binding.b
+    # @messages = Message.all
 
+    @messages = Message.where(recipient: @current_user )
+    
+    render json: @messages
+  end
+
+  def user_message
+  
+    @messages = Message.where(recipient: @current_user )    
     render json: @messages
   end
 

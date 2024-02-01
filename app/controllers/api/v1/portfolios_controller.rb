@@ -23,7 +23,8 @@ class Api::V1::PortfoliosController < ApplicationController
 
   # POST /portfolios
   def create
-    @portfolio = @user.portfolios.new(portfolio_params)
+    @portfolio = @current_user.portfolios.new(portfolio_params)
+
 
     if @portfolio.save
       render json: @portfolio, status: :created
