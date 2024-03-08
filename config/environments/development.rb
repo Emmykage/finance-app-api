@@ -60,10 +60,30 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
+    # Email deliver set up
+
+    # config.action_mailer.delivery_method = :smtp
+    # host = 'localhost:3000' #replace with your own url
+    # config.action_mailer.default_url_options = { host: host }
+  
+    # # SMTP settings for gmail
+    # config.action_mailer.smtp_settings = {
+    #   :address              => "smtp.gmail.com",
+    #   :port                 => 587,
+    #   :user_name            => <gmail_username>,
+    #   :password             => "Chemistry-101",
+    #   :authentication       => "plain",
+    #   :enable_starttls_auto => true
+    # }
+
+
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 
+
+  # letter_opener config
+  
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
   # Uncomment if you wish to allow Action Cable access from any origin.
